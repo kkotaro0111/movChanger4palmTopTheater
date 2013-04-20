@@ -1,5 +1,7 @@
 movie/
 *.mp4
+Podfile.lock
+*/Pods/*
 
 # Xcode
 .DS_Store

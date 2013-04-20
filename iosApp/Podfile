@@ -1,0 +1,3 @@
+platform :ios
+pod "SocketRocket"
+pod "JSONKit"

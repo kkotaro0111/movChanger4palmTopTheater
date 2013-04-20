@@ -22,9 +22,14 @@
 		7DA9AB9817218E2100EED1FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9AB9717218E2100EED1FB /* ViewController.m */; };
 		7DA9AB9B17218E2100EED1FB /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA9AB9917218E2100EED1FB /* ViewController.xib */; };
 		7DA9ABA21721901000EED1FB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9ABA11721901000EED1FB /* AVFoundation.framework */; };
+		7DC87E7A1722C4AE00A103B2 /* LBYouTubeExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC87E771722C4AE00A103B2 /* LBYouTubeExtractor.m */; };
+		7DC87E7B1722C4AE00A103B2 /* LBYouTubePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC87E791722C4AE00A103B2 /* LBYouTubePlayerController.m */; };
+		7DC87E7D1722C4DF00A103B2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DC87E7C1722C4DF00A103B2 /* MediaPlayer.framework */; };
+		9E2543B602C8490286CA8288 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1558EAAC4804A16A17322C4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43854308F5A14725A46617B1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7D2FE4621722563500951F10 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7D5D4D6317221ABA00010920 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7DA9AB7B17218E2100EED1FB /* ptt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ptt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +50,13 @@
 		7DA9AB9A17218E2100EED1FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		7DA9ABA11721901000EED1FB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7DA9ABA31721956600EED1FB /* m02.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = m02.mp4; sourceTree = "<group>"; };
+		7DC87E751722C4AE00A103B2 /* LBYouTube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBYouTube.h; sourceTree = "<group>"; };
+		7DC87E761722C4AE00A103B2 /* LBYouTubeExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBYouTubeExtractor.h; sourceTree = "<group>"; };
+		7DC87E771722C4AE00A103B2 /* LBYouTubeExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBYouTubeExtractor.m; sourceTree = "<group>"; };
+		7DC87E781722C4AE00A103B2 /* LBYouTubePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBYouTubePlayerController.h; sourceTree = "<group>"; };
+		7DC87E791722C4AE00A103B2 /* LBYouTubePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBYouTubePlayerController.m; sourceTree = "<group>"; };
+		7DC87E7C1722C4DF00A103B2 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		C1558EAAC4804A16A17322C4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,12 +64,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DC87E7D1722C4DF00A103B2 /* MediaPlayer.framework in Frameworks */,
 				7D2FE4631722563500951F10 /* CoreMedia.framework in Frameworks */,
 				7D5D4D6417221ABA00010920 /* QuartzCore.framework in Frameworks */,
 				7DA9ABA21721901000EED1FB /* AVFoundation.framework in Frameworks */,
 				7DA9AB7F17218E2100EED1FB /* UIKit.framework in Frameworks */,
 				7DA9AB8117218E2100EED1FB /* Foundation.framework in Frameworks */,
 				7DA9AB8317218E2100EED1FB /* CoreGraphics.framework in Frameworks */,
+				9E2543B602C8490286CA8288 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,9 +81,11 @@
 		7DA9AB7217218E2100EED1FB = {
 			isa = PBXGroup;
 			children = (
+				7DC87E741722C4AE00A103B2 /* LBYouTubeView */,
 				7DA9AB8417218E2100EED1FB /* ptt */,
 				7DA9AB7D17218E2100EED1FB /* Frameworks */,
 				7DA9AB7C17218E2100EED1FB /* Products */,
+				43854308F5A14725A46617B1 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,12 +100,14 @@
 		7DA9AB7D17218E2100EED1FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DC87E7C1722C4DF00A103B2 /* MediaPlayer.framework */,
 				7D2FE4621722563500951F10 /* CoreMedia.framework */,
 				7D5D4D6317221ABA00010920 /* QuartzCore.framework */,
 				7DA9ABA11721901000EED1FB /* AVFoundation.framework */,
 				7DA9AB7E17218E2100EED1FB /* UIKit.framework */,
 				7DA9AB8017218E2100EED1FB /* Foundation.framework */,
 				7DA9AB8217218E2100EED1FB /* CoreGraphics.framework */,
+				C1558EAAC4804A16A17322C4 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,6 +140,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7DC87E741722C4AE00A103B2 /* LBYouTubeView */ = {
+			isa = PBXGroup;
+			children = (
+				7DC87E751722C4AE00A103B2 /* LBYouTube.h */,
+				7DC87E761722C4AE00A103B2 /* LBYouTubeExtractor.h */,
+				7DC87E771722C4AE00A103B2 /* LBYouTubeExtractor.m */,
+				7DC87E781722C4AE00A103B2 /* LBYouTubePlayerController.h */,
+				7DC87E791722C4AE00A103B2 /* LBYouTubePlayerController.m */,
+			);
+			path = LBYouTubeView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7DA9AB9E17218E2100EED1FB /* Build configuration list for PBXNativeTarget "ptt" */;
 			buildPhases = (
+				919E07741C064A42A452069F /* Check Pods Manifest.lock */,
 				7DA9AB7717218E2100EED1FB /* Sources */,
 				7DA9AB7817218E2100EED1FB /* Frameworks */,
 				7DA9AB7917218E2100EED1FB /* Resources */,
+				F3E2A3F9CF33407491875B35 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -184,6 +216,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		919E07741C064A42A452069F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+		};
+		F3E2A3F9CF33407491875B35 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7DA9AB7717218E2100EED1FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -192,6 +255,8 @@
 				7DA9AB8B17218E2100EED1FB /* main.m in Sources */,
 				7DA9AB8F17218E2100EED1FB /* AppDelegate.m in Sources */,
 				7DA9AB9817218E2100EED1FB /* ViewController.m in Sources */,
+				7DC87E7A1722C4AE00A103B2 /* LBYouTubeExtractor.m in Sources */,
+				7DC87E7B1722C4AE00A103B2 /* LBYouTubePlayerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +340,7 @@
 		};
 		7DA9AB9F17218E2100EED1FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43854308F5A14725A46617B1 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ptt/ptt-Prefix.pch";
@@ -287,6 +353,7 @@
 		};
 		7DA9ABA017218E2100EED1FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43854308F5A14725A46617B1 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ptt/ptt-Prefix.pch";
