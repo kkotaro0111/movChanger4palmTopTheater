@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D1635CD17222BFE001439A8 /* m02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DA9ABA31721956600EED1FB /* m02.mp4 */; };
+		7D2FE4631722563500951F10 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2FE4621722563500951F10 /* CoreMedia.framework */; };
 		7D5D4D6417221ABA00010920 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5D4D6317221ABA00010920 /* QuartzCore.framework */; };
 		7DA9AB7F17218E2100EED1FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9AB7E17218E2100EED1FB /* UIKit.framework */; };
 		7DA9AB8117218E2100EED1FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9AB8017218E2100EED1FB /* Foundation.framework */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D2FE4621722563500951F10 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7D5D4D6317221ABA00010920 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7DA9AB7B17218E2100EED1FB /* ptt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ptt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DA9AB7E17218E2100EED1FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D2FE4631722563500951F10 /* CoreMedia.framework in Frameworks */,
 				7D5D4D6417221ABA00010920 /* QuartzCore.framework in Frameworks */,
 				7DA9ABA21721901000EED1FB /* AVFoundation.framework in Frameworks */,
 				7DA9AB7F17218E2100EED1FB /* UIKit.framework in Frameworks */,
@@ -81,6 +84,7 @@
 		7DA9AB7D17218E2100EED1FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D2FE4621722563500951F10 /* CoreMedia.framework */,
 				7D5D4D6317221ABA00010920 /* QuartzCore.framework */,
 				7DA9ABA11721901000EED1FB /* AVFoundation.framework */,
 				7DA9AB7E17218E2100EED1FB /* UIKit.framework */,

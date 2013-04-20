@@ -31,7 +31,7 @@
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"readyForDisplay"]){
-        NSLog(@"observe:readyForDisplay: %@, %@, %@", object, change, context);
+        //NSLog(@"observe:readyForDisplay: %@, %@, %@", object, change, context);
         AVPlayerLayer *playerLayer = (AVPlayerLayer *)object;
         [playerLayer.player play];
     }
@@ -51,7 +51,7 @@
         NSMutableDictionary *tmpPlayers = [NSMutableDictionary dictionaryWithCapacity:3];
         NSMutableDictionary *tmpPlayerLayers = [NSMutableDictionary dictionaryWithCapacity:3];
         for(int i = 0; i < 3; i++){
-            NSLog(@"key: %@", keys[i]);
+            //NSLog(@"key: %@", keys[i]);
             //AVPlayer
             AVPlayer *player = [[AVPlayer alloc] init];
             [tmpPlayers setObject:player forKey:keys[i]];
@@ -89,17 +89,23 @@
         playerLayers = [NSDictionary dictionaryWithDictionary:tmpPlayerLayers];
         //NSLog(@"playerLayers %@", playerLayers);
         
-        //NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"m02" ofType:@"mp4"];
-        [self createPlayer:@"back" videoPath:@"http://utageworks.jpn.ph/test/palm/movie/m03.mp4"];
-        [self createPlayer:@"center" videoPath:@"http://utageworks.jpn.ph/test/palm/movie/m02.mp4"];
+        NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"m02" ofType:@"mp4"];
+        [self createPlayer:@"back" videoPath:videoPath];
+        [self createPlayer:@"center" videoPath:@"http://utageworks.jpn.ph/test/palm/movie/m04.mp4"];
         [self createPlayer:@"front" videoPath:@"http://utageworks.jpn.ph/test/palm/movie/m01.mp4"];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loop:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:nil];
+    
     return self;
 }
 
 - (void) createPlayer:(NSString *)playerLayerPosition videoPath:(NSString *)videoPath
 {
-    NSLog(@"videoPath: %@", videoPath);
+    //NSLog(@"videoPath: %@", videoPath);
     NSError *error = nil;
     NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"^https?://" options:0 error:&error];
     NSTextCheckingResult *match = [regexp firstMatchInString:videoPath options:0 range:NSMakeRange(0, videoPath.length)];
@@ -110,8 +116,20 @@
         url = [NSURL fileURLWithPath:videoPath];
     }
     AVPlayer *player = [[AVPlayer alloc] initWithURL: url];
+    
+    player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+
     AVPlayerLayer *playerLayer = (AVPlayerLayer *)[playerLayers objectForKey:playerLayerPosition];
     playerLayer.player = player;
+}
+
+- (void)loop:(NSNotification *)notification
+{
+    //NSLog(@"loop: %@", notification);
+    //NSLog(@"object: %@", [notification object]);
+    AVPlayerItem *playerItem = (AVPlayerItem *)[notification object];
+    //NSLog(@"playerItem: %@", playerItem);
+    [playerItem seekToTime:kCMTimeZero];
 }
 
 
