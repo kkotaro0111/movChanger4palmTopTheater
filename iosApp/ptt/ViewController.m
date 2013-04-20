@@ -90,22 +90,18 @@
         playerLayers = [NSDictionary dictionaryWithDictionary:tmpPlayerLayers];
         //NSLog(@"playerLayers %@", playerLayers);
         
-        NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"m02" ofType:@"mp4"];
-        [self createPlayer:@"back" videoPath:videoPath];
-        [self createPlayer:@"middle" videoPath:@"http://utageworks.jpn.ph/test/palm/movie/m04.mp4"];
-        [self createPlayer:@"front" videoPath:@"http://utageworks.jpn.ph/test/palm/movie/m01.mp4"];
-        
         NSString *hostname = @"utageworks.jpn.ph";
         NSURL *wsurl = [NSURL URLWithString:[NSString stringWithFormat:@"ws://%@:9001", hostname]];
         socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:wsurl]];
         socket.delegate = self;
         [socket open];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loop:)
+                                                     name:AVPlayerItemDidPlayToEndTimeNotification
+                                                   object:nil];
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loop:)
-                                                 name:AVPlayerItemDidPlayToEndTimeNotification
-                                               object:nil];
     
     return self;
 }
@@ -113,12 +109,20 @@
 - (void) createPlayer:(NSString *)playerLayerPosition videoPath:(NSString *)videoPath
 {
     //NSLog(@"videoPath: %@", videoPath);
+    
     NSRange match = [videoPath rangeOfString:@"^https?://" options:NSRegularExpressionSearch];
     NSURL *url;
     if(match.location != NSNotFound){
+        NSRange ytmatch = [videoPath rangeOfString:@"^https?://(www.)?youtube.com" options:NSRegularExpressionSearch];
+        if(ytmatch.location != NSNotFound){
+            LBYouTubeExtractor *ext = [[LBYouTubeExtractor alloc] initWithURL:[NSURL URLWithString:videoPath] quality:LBYouTubeVideoQualitySmall];
+            ext.delegate = self;
+            [ext startExtracting];
+            return;
+        }
         url = [NSURL URLWithString:videoPath];
     }else{
-        url = [NSURL fileURLWithPath:videoPath];
+        url = [NSURL URLWithString: [NSString stringWithFormat:@"http://utageworks.jpn.ph/test/palm/movie/%@.mp4", videoPath]];
     }
     AVPlayer *player = [[AVPlayer alloc] initWithURL: url];
     
@@ -146,13 +150,58 @@
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
 {
     NSLog(@"WebSocketMessage: %@", [message description]);
-    NSArray *wsmsg = [[message description] componentsSeparatedByString:@":"];
+    
+    //NSArray *wsmsg = [[message description] componentsSeparatedByString:@":"];
+    NSError *err = nil;
+    NSRegularExpression *regexp = nil;
+    
+    regexp = [NSRegularExpression regularExpressionWithPattern:@"([^:]*):(.*)"
+                                                       options:NSRegularExpressionCaseInsensitive
+                                                         error:&err];
+    NSTextCheckingResult *match = [regexp firstMatchInString:[message description]
+                                                     options:0
+                                                       range:NSMakeRange(0, [message description].length)];
+    NSMutableArray *wsmsg = [NSMutableArray array];
+    
+    if(match){
+        [wsmsg addObject:[[message description] substringWithRange:[match rangeAtIndex:1]]];
+        [wsmsg addObject:[[message description] substringWithRange:[match rangeAtIndex:2]]];
+    }
+    
     NSLog(@"wsmsg: %@, count: %d", wsmsg, [wsmsg count]);
     if(wsmsg.count == 2){
         if(![@"msg" isEqualToString:[wsmsg objectAtIndex:0]]){
-            [self createPlayer:[wsmsg objectAtIndex:0] videoPath:[NSString stringWithFormat:@"http://utageworks.jpn.ph/test/palm/movie/%@.mp4", [wsmsg objectAtIndex:1]]];
+            //[self createPlayer:[wsmsg objectAtIndex:0] videoPath:[NSString stringWithFormat:@"http://utageworks.jpn.ph/test/palm/movie/%@.mp4", [wsmsg objectAtIndex:1]]];
+            [self createPlayer:[wsmsg objectAtIndex:0] videoPath:[wsmsg objectAtIndex:1]];
         }
     }
+}
+
+-(void)youTubePlayerViewController:(LBYouTubePlayerController *)controller didSuccessfullyExtractYouTubeURL:(NSURL *)videoURL
+{
+    NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", controller, videoURL);
+}
+
+-(void)youTubePlayerViewController:(LBYouTubePlayerController *)controller failedExtractingYouTubeURLWithError:(NSError *)error
+{
+    NSLog(@"failedExtractingYouTubeURLWithError:%@, %@", controller, error);
+}
+
+-(void)youTubeExtractor:(LBYouTubeExtractor *)extractor didSuccessfullyExtractYouTubeURL:(NSURL *)videoURL
+{
+    NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", extractor, videoURL);
+    AVPlayer *player = [[AVPlayer alloc] initWithURL: videoURL];
+    
+    player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    
+    AVPlayerLayer *playerLayer = (AVPlayerLayer *)[playerLayers objectForKey:@"front"];
+    playerLayer.player = player;
+    
+}
+-(void)youTubeExtractor:(LBYouTubeExtractor *)extractor failedExtractingYouTubeURLWithError:(NSError *)error
+{
+    NSLog(@"failedExtractingYouTubeURLWithError:%@, %@", extractor, error);
+    
 }
 
 

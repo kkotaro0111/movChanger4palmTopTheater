@@ -12,7 +12,8 @@
 #import <CoreMedia/CoreMedia.h>
 #import <SocketRocket/SRWebSocket.h>
 #import <JSONKit/JSONKit.h>
+#import "LBYouTube.h"
 
-@interface ViewController : UIViewController <SRWebSocketDelegate>
+@interface ViewController : UIViewController <SRWebSocketDelegate, LBYouTubePlayerControllerDelegate,LBYouTubeExtractorDelegate>
 
 @end

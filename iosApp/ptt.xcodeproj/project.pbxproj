@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D1635CD17222BFE001439A8 /* m02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DA9ABA31721956600EED1FB /* m02.mp4 */; };
 		7D2FE4631722563500951F10 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2FE4621722563500951F10 /* CoreMedia.framework */; };
 		7D5D4D6417221ABA00010920 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5D4D6317221ABA00010920 /* QuartzCore.framework */; };
 		7DA9AB7F17218E2100EED1FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9AB7E17218E2100EED1FB /* UIKit.framework */; };
@@ -49,7 +48,6 @@
 		7DA9AB9717218E2100EED1FB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7DA9AB9A17218E2100EED1FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		7DA9ABA11721901000EED1FB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		7DA9ABA31721956600EED1FB /* m02.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = m02.mp4; sourceTree = "<group>"; };
 		7DC87E751722C4AE00A103B2 /* LBYouTube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBYouTube.h; sourceTree = "<group>"; };
 		7DC87E761722C4AE00A103B2 /* LBYouTubeExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBYouTubeExtractor.h; sourceTree = "<group>"; };
 		7DC87E771722C4AE00A103B2 /* LBYouTubeExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBYouTubeExtractor.m; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 		7DA9AB8417218E2100EED1FB /* ptt */ = {
 			isa = PBXGroup;
 			children = (
-				7DA9ABA31721956600EED1FB /* m02.mp4 */,
 				7DA9AB8D17218E2100EED1FB /* AppDelegate.h */,
 				7DA9AB8E17218E2100EED1FB /* AppDelegate.m */,
 				7DA9AB9617218E2100EED1FB /* ViewController.h */,
@@ -205,7 +202,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D1635CD17222BFE001439A8 /* m02.mp4 in Resources */,
 				7DA9AB8917218E2100EED1FB /* InfoPlist.strings in Resources */,
 				7DA9AB9117218E2100EED1FB /* Default.png in Resources */,
 				7DA9AB9317218E2100EED1FB /* Default@2x.png in Resources */,
