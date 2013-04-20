@@ -178,16 +178,6 @@
     }
 }
 
--(void)youTubePlayerViewController:(LBYouTubePlayerController *)controller didSuccessfullyExtractYouTubeURL:(NSURL *)videoURL
-{
-    //NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", controller, videoURL);
-}
-
--(void)youTubePlayerViewController:(LBYouTubePlayerController *)controller failedExtractingYouTubeURLWithError:(NSError *)error
-{
-    //NSLog(@"failedExtractingYouTubeURLWithError:%@, %@", controller, error);
-}
-
 -(void)youTubeExtractor:(LBYouTubeExtractor *)extractor didSuccessfullyExtractYouTubeURL:(NSURL *)videoURL
 {
     //NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", extractor.playerPosition, videoURL);
