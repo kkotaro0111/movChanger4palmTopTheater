@@ -150,7 +150,7 @@
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
 {
-    NSLog(@"WebSocketMessage: %@", [message description]);
+    //NSLog(@"WebSocketMessage: %@", [message description]);
     
     //NSArray *wsmsg = [[message description] componentsSeparatedByString:@":"];
     NSError *err = nil;
@@ -169,7 +169,7 @@
         [wsmsg addObject:[[message description] substringWithRange:[match rangeAtIndex:2]]];
     }
     
-    NSLog(@"wsmsg: %@, count: %d", wsmsg, [wsmsg count]);
+    //NSLog(@"wsmsg: %@, count: %d", wsmsg, [wsmsg count]);
     if(wsmsg.count == 2){
         if(![@"msg" isEqualToString:[wsmsg objectAtIndex:0]]){
             //[self createPlayer:[wsmsg objectAtIndex:0] videoPath:[NSString stringWithFormat:@"http://utageworks.jpn.ph/test/palm/movie/%@.mp4", [wsmsg objectAtIndex:1]]];
@@ -180,17 +180,17 @@
 
 -(void)youTubePlayerViewController:(LBYouTubePlayerController *)controller didSuccessfullyExtractYouTubeURL:(NSURL *)videoURL
 {
-    NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", controller, videoURL);
+    //NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", controller, videoURL);
 }
 
 -(void)youTubePlayerViewController:(LBYouTubePlayerController *)controller failedExtractingYouTubeURLWithError:(NSError *)error
 {
-    NSLog(@"failedExtractingYouTubeURLWithError:%@, %@", controller, error);
+    //NSLog(@"failedExtractingYouTubeURLWithError:%@, %@", controller, error);
 }
 
 -(void)youTubeExtractor:(LBYouTubeExtractor *)extractor didSuccessfullyExtractYouTubeURL:(NSURL *)videoURL
 {
-    NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", extractor.playerPosition, videoURL);
+    //NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", extractor.playerPosition, videoURL);
     AVPlayer *player = [[AVPlayer alloc] initWithURL: videoURL];
     
     player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
@@ -201,7 +201,7 @@
 }
 -(void)youTubeExtractor:(LBYouTubeExtractor *)extractor failedExtractingYouTubeURLWithError:(NSError *)error
 {
-    NSLog(@"failedExtractingYouTubeURLWithError:%@, %@", extractor, error);
+    //NSLog(@"failedExtractingYouTubeURLWithError:%@, %@", extractor, error);
     
 }
 
