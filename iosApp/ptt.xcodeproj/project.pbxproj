@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1635CD17222BFE001439A8 /* m02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DA9ABA31721956600EED1FB /* m02.mp4 */; };
 		7D5D4D6417221ABA00010920 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5D4D6317221ABA00010920 /* QuartzCore.framework */; };
 		7DA9AB7F17218E2100EED1FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9AB7E17218E2100EED1FB /* UIKit.framework */; };
 		7DA9AB8117218E2100EED1FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9AB8017218E2100EED1FB /* Foundation.framework */; };
@@ -20,7 +21,6 @@
 		7DA9AB9817218E2100EED1FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9AB9717218E2100EED1FB /* ViewController.m */; };
 		7DA9AB9B17218E2100EED1FB /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA9AB9917218E2100EED1FB /* ViewController.xib */; };
 		7DA9ABA21721901000EED1FB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9ABA11721901000EED1FB /* AVFoundation.framework */; };
-		7DA9ABA417219A7300EED1FB /* m02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DA9ABA31721956600EED1FB /* m02.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,7 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DA9ABA417219A7300EED1FB /* m02.mp4 in Resources */,
+				7D1635CD17222BFE001439A8 /* m02.mp4 in Resources */,
 				7DA9AB8917218E2100EED1FB /* InfoPlist.strings in Resources */,
 				7DA9AB9117218E2100EED1FB /* Default.png in Resources */,
 				7DA9AB9317218E2100EED1FB /* Default@2x.png in Resources */,
@@ -276,6 +276,7 @@
 				GCC_PREFIX_HEADER = "ptt/ptt-Prefix.pch";
 				INFOPLIST_FILE = "ptt/ptt-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -287,6 +288,7 @@
 				GCC_PREFIX_HEADER = "ptt/ptt-Prefix.pch";
 				INFOPLIST_FILE = "ptt/ptt-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
