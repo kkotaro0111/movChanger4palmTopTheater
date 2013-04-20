@@ -43,12 +43,12 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 @end
 @implementation LBYouTubeExtractor
 
-@synthesize youTubeURL, extractedURL, delegate, quality, connection, buffer;
+@synthesize youTubeURL, extractedURL, delegate, quality, connection, buffer, playerPosition;
 
 #pragma mark Initialization
 
 -(id)initWithURL:(NSURL *)videoURL quality:(LBYouTubeVideoQuality)videoQuality {
-    NSLog(@"call initWithURL");
+    //NSLog(@"call initWithURL");
     self = [super init];
     if (self) {
         [self _setupWithURL:videoURL quality:videoQuality];
@@ -58,7 +58,7 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 }
 
 -(id)initWithID:(NSString *)videoID quality:(LBYouTubeVideoQuality)videoQuality {
-    NSLog(@"call initWithID");
+    //NSLog(@"call initWithID");
     self = [super init];
     if (self) {
         [self _setupWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.youtube.com/watch?v=%@", videoID]] quality:videoQuality];
@@ -68,7 +68,7 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 }
 
 -(void)_setupWithURL:(NSURL *)URL quality:(LBYouTubeVideoQuality)videoQuality {
-    NSLog(@"call _setupWithURL");
+    //NSLog(@"call _setupWithURL");
     self.youTubeURL = URL;
     self.extractedURL = nil;
     self.quality = videoQuality;
@@ -78,7 +78,7 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 #pragma mark Other Methods
 
 -(void)startExtracting {
-    NSLog(@"call startExtracting: %@, %@", self.buffer, self.extractedURL);
+    //NSLog(@"call startExtracting: %@, %@", self.buffer, self.extractedURL);
     if (!self.buffer || !self.extractedURL) {
         NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:self.youTubeURL];
         [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
@@ -108,14 +108,14 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 #pragma mark Private
 
 -(void)_closeConnection {
-    NSLog(@"call _closeConnection");
+    //NSLog(@"call _closeConnection");
     [self.connection cancel];
     self.connection = nil;
     self.buffer = nil;
 }
 
 -(void)_startConnection {
-    NSLog(@"call _startConnection");
+    //NSLog(@"call _startConnection");
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:self.youTubeURL];
     [request setValue:(NSString *)kUserAgent forHTTPHeaderField:@"User-Agent"];
     
@@ -209,7 +209,7 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 }
 
 -(void)_didSuccessfullyExtractYouTubeURL:(NSURL *)videoURL {
-    NSLog(@"call _didSuccessfullyExtractYouTubeURL: %@, delegator: %@", videoURL, self.delegate);
+    //NSLog(@"call _didSuccessfullyExtractYouTubeURL: %@, delegator: %@", videoURL, self.delegate);
     if (self.delegate) {
         [self.delegate youTubeExtractor:self didSuccessfullyExtractYouTubeURL:videoURL];
     }
@@ -220,7 +220,7 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 }
 
 -(void)_failedExtractingYouTubeURLWithError:(NSError *)error {
-    NSLog(@"call _failedExtractingYouTubeURLWithError: %@", error);
+    //NSLog(@"call _failedExtractingYouTubeURLWithError: %@", error);
     if (self.delegate) {
         [self.delegate youTubeExtractor:self failedExtractingYouTubeURLWithError:error];
     }
@@ -234,7 +234,7 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 #pragma mark NSURLConnectionDelegate
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"delegate connection didReceiveResponse: %@", response);
+    //NSLog(@"delegate connection didReceiveResponse: %@", response);
     long long capacity;
     if (response.expectedContentLength != NSURLResponseUnknownLength) {
         capacity = response.expectedContentLength;
@@ -252,7 +252,7 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *) connection {
-    NSLog(@"delegate connectionDidFinishLoading: %@", connection);
+    //NSLog(@"delegate connectionDidFinishLoading: %@", connection);
     NSString* html = [[NSString alloc] initWithData:self.buffer encoding:NSUTF8StringEncoding];
     [self _closeConnection];
 
@@ -263,7 +263,7 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
     
     NSError* error = nil;
     self.extractedURL = [self _extractYouTubeURLFromFile:html error:&error];
-    NSLog(@"delegate connectionDidFinishLoading Parsed: %@", error);
+    //NSLog(@"delegate connectionDidFinishLoading Parsed: %@", error);
     if (error) {
         [self _failedExtractingYouTubeURLWithError:error];
     }
@@ -273,7 +273,7 @@ NSInteger const LBYouTubePlayerExtractorErrorCodeNoJSONData   =    3;
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"delegate didFailWithError: %@", error);
+    //NSLog(@"delegate didFailWithError: %@", error);
     [self _closeConnection];
     [self _failedExtractingYouTubeURLWithError:error];
 }

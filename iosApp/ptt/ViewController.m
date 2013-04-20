@@ -117,6 +117,7 @@
         if(ytmatch.location != NSNotFound){
             LBYouTubeExtractor *ext = [[LBYouTubeExtractor alloc] initWithURL:[NSURL URLWithString:videoPath] quality:LBYouTubeVideoQualitySmall];
             ext.delegate = self;
+            ext.playerPosition = playerLayerPosition;
             [ext startExtracting];
             return;
         }
@@ -189,12 +190,12 @@
 
 -(void)youTubeExtractor:(LBYouTubeExtractor *)extractor didSuccessfullyExtractYouTubeURL:(NSURL *)videoURL
 {
-    NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", extractor, videoURL);
+    NSLog(@"didSuccessfullyExtractYouTubeURL:%@, %@", extractor.playerPosition, videoURL);
     AVPlayer *player = [[AVPlayer alloc] initWithURL: videoURL];
     
     player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
     
-    AVPlayerLayer *playerLayer = (AVPlayerLayer *)[playerLayers objectForKey:@"front"];
+    AVPlayerLayer *playerLayer = (AVPlayerLayer *)[playerLayers objectForKey:extractor.playerPosition];
     playerLayer.player = player;
     
 }
