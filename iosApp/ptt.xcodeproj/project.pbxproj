@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		7D1635CD17222BFE001439A8 /* m02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DA9ABA31721956600EED1FB /* m02.mp4 */; };
 		7D2FE4631722563500951F10 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2FE4621722563500951F10 /* CoreMedia.framework */; };
+		7D2FE4BA17225AE900951F10 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2FE4B917225AE900951F10 /* libicucore.dylib */; };
+		7D2FE4BC17225AEF00951F10 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2FE4BB17225AEF00951F10 /* CFNetwork.framework */; };
+		7D2FE4BE17225AF800951F10 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2FE4BD17225AF800951F10 /* Security.framework */; };
+		7D2FE4C61722613500951F10 /* libSocketRocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2FE4C51722613500951F10 /* libSocketRocket.a */; };
 		7D5D4D6417221ABA00010920 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5D4D6317221ABA00010920 /* QuartzCore.framework */; };
 		7DA9AB7F17218E2100EED1FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9AB7E17218E2100EED1FB /* UIKit.framework */; };
 		7DA9AB8117218E2100EED1FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9AB8017218E2100EED1FB /* Foundation.framework */; };
@@ -26,6 +30,11 @@
 
 /* Begin PBXFileReference section */
 		7D2FE4621722563500951F10 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		7D2FE4B517225AD300951F10 /* SocketRocket 3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SocketRocket 3.xcodeproj"; path = "SocketRocket/SocketRocket 3.xcodeproj"; sourceTree = "<group>"; };
+		7D2FE4B917225AE900951F10 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		7D2FE4BB17225AEF00951F10 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7D2FE4BD17225AF800951F10 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7D2FE4C51722613500951F10 /* libSocketRocket.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libSocketRocket.a; path = "SocketRocket/build/Release-iphoneos/libSocketRocket.a"; sourceTree = "<group>"; };
 		7D5D4D6317221ABA00010920 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7DA9AB7B17218E2100EED1FB /* ptt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ptt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DA9AB7E17218E2100EED1FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -52,6 +61,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D2FE4C61722613500951F10 /* libSocketRocket.a in Frameworks */,
+				7D2FE4BE17225AF800951F10 /* Security.framework in Frameworks */,
+				7D2FE4BC17225AEF00951F10 /* CFNetwork.framework in Frameworks */,
+				7D2FE4BA17225AE900951F10 /* libicucore.dylib in Frameworks */,
 				7D2FE4631722563500951F10 /* CoreMedia.framework in Frameworks */,
 				7D5D4D6417221ABA00010920 /* QuartzCore.framework in Frameworks */,
 				7DA9ABA21721901000EED1FB /* AVFoundation.framework in Frameworks */,
@@ -64,9 +77,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D2FE4B617225AD300951F10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7DA9AB7217218E2100EED1FB = {
 			isa = PBXGroup;
 			children = (
+				7D2FE4B517225AD300951F10 /* SocketRocket 3.xcodeproj */,
 				7DA9AB8417218E2100EED1FB /* ptt */,
 				7DA9AB7D17218E2100EED1FB /* Frameworks */,
 				7DA9AB7C17218E2100EED1FB /* Products */,
@@ -84,6 +105,10 @@
 		7DA9AB7D17218E2100EED1FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D2FE4C51722613500951F10 /* libSocketRocket.a */,
+				7D2FE4BD17225AF800951F10 /* Security.framework */,
+				7D2FE4BB17225AEF00951F10 /* CFNetwork.framework */,
+				7D2FE4B917225AE900951F10 /* libicucore.dylib */,
 				7D2FE4621722563500951F10 /* CoreMedia.framework */,
 				7D5D4D6317221ABA00010920 /* QuartzCore.framework */,
 				7DA9ABA11721901000EED1FB /* AVFoundation.framework */,
@@ -161,6 +186,12 @@
 			mainGroup = 7DA9AB7217218E2100EED1FB;
 			productRefGroup = 7DA9AB7C17218E2100EED1FB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7D2FE4B617225AD300951F10 /* Products */;
+					ProjectRef = 7D2FE4B517225AD300951F10 /* SocketRocket 3.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7DA9AB7A17218E2100EED1FB /* ptt */,
@@ -278,7 +309,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ptt/ptt-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/SocketRocket/**";
 				INFOPLIST_FILE = "ptt/ptt-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -290,7 +323,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ptt/ptt-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/SocketRocket/**";
 				INFOPLIST_FILE = "ptt/ptt-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

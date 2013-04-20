@@ -11,11 +11,12 @@
 @interface ViewController (){
     NSDictionary *players;
     NSDictionary *playerLayers;
-    //AVPlayer *frontPlayer, *centerPlayer, *backPlayer;
-    //AVPlayerLayer *frontPlayerLayer, *centerPlayerLayer, *backPlayerLayer;
+    
+    SRWebSocket *socket;
 }
 
 - (void) createPlayer:(NSString *)playerLayerPosition videoPath:(NSString *)videoPath;
+- (void) loop:(NSNotification *)notification;
 
 @end
 
@@ -47,7 +48,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
-        NSArray *keys = [[NSArray alloc] initWithObjects:@"front", @"center", @"back", nil];
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"front", @"middle", @"back", nil];
         NSMutableDictionary *tmpPlayers = [NSMutableDictionary dictionaryWithCapacity:3];
         NSMutableDictionary *tmpPlayerLayers = [NSMutableDictionary dictionaryWithCapacity:3];
         for(int i = 0; i < 3; i++){
@@ -65,15 +66,15 @@
             
             int topmargin = 0;
             int backHeight = 122;
-            int centerHeight = 163;
+            int middleHeight = 163;
             int frontHeight = 175;
             
             if([((NSString *)keys[i]) isEqualToString:@"back"]){
                 playerLayer.frame = CGRectMake(0, topmargin * scale, w, backHeight * scale);
-            }else if([((NSString *)keys[i]) isEqualToString:@"center"]){
-                playerLayer.frame = CGRectMake(0, (topmargin + backHeight) * scale, w, centerHeight);
+            }else if([((NSString *)keys[i]) isEqualToString:@"middle"]){
+                playerLayer.frame = CGRectMake(0, (topmargin + backHeight) * scale, w, middleHeight);
             }else if([((NSString *)keys[i]) isEqualToString:@"front"]){
-                playerLayer.frame = CGRectMake(0, (topmargin + backHeight + centerHeight) * scale, w, frontHeight);
+                playerLayer.frame = CGRectMake(0, (topmargin + backHeight + middleHeight) * scale, w, frontHeight);
             }
             playerLayer.videoGravity = @"AVLayerVideoGravityResizeAspectFill";
             playerLayer.masksToBounds = YES;
@@ -91,8 +92,14 @@
         
         NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"m02" ofType:@"mp4"];
         [self createPlayer:@"back" videoPath:videoPath];
-        [self createPlayer:@"center" videoPath:@"http://utageworks.jpn.ph/test/palm/movie/m04.mp4"];
+        [self createPlayer:@"middle" videoPath:@"http://utageworks.jpn.ph/test/palm/movie/m04.mp4"];
         [self createPlayer:@"front" videoPath:@"http://utageworks.jpn.ph/test/palm/movie/m01.mp4"];
+        
+        NSString *hostname = @"utageworks.jpn.ph";
+        NSURL *wsurl = [NSURL URLWithString:[NSString stringWithFormat:@"ws://%@:9001", hostname]];
+        socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:wsurl]];
+        socket.delegate = self;
+        [socket open];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -106,11 +113,9 @@
 - (void) createPlayer:(NSString *)playerLayerPosition videoPath:(NSString *)videoPath
 {
     //NSLog(@"videoPath: %@", videoPath);
-    NSError *error = nil;
-    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"^https?://" options:0 error:&error];
-    NSTextCheckingResult *match = [regexp firstMatchInString:videoPath options:0 range:NSMakeRange(0, videoPath.length)];
+    NSRange match = [videoPath rangeOfString:@"^https?://" options:NSRegularExpressionSearch];
     NSURL *url;
-    if(match){
+    if(match.location != NSNotFound){
         url = [NSURL URLWithString:videoPath];
     }else{
         url = [NSURL fileURLWithPath:videoPath];
@@ -130,6 +135,24 @@
     AVPlayerItem *playerItem = (AVPlayerItem *)[notification object];
     //NSLog(@"playerItem: %@", playerItem);
     [playerItem seekToTime:kCMTimeZero];
+}
+
+
+- (void)webSocketDidOpen:(SRWebSocket *)webSocket
+{
+    [webSocket send:@"msg:Connected"];
+}
+
+- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
+{
+    NSLog(@"WebSocketMessage: %@", [message description]);
+    NSArray *wsmsg = [[message description] componentsSeparatedByString:@":"];
+    NSLog(@"wsmsg: %@, count: %d", wsmsg, [wsmsg count]);
+    if(wsmsg.count == 2){
+        if(![@"msg" isEqualToString:[wsmsg objectAtIndex:0]]){
+            [self createPlayer:[wsmsg objectAtIndex:0] videoPath:[NSString stringWithFormat:@"http://utageworks.jpn.ph/test/palm/movie/%@.mp4", [wsmsg objectAtIndex:1]]];
+        }
+    }
 }
 
 

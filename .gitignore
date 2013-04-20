@@ -1,5 +1,6 @@
 movie/
 *.mp4
+SocketRocket
 
 # Xcode
 .DS_Store

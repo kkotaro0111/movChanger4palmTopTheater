@@ -10,7 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import <CoreMedia/CoreMedia.h>
+#import <SocketRocket/SRWebSocket.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <SRWebSocketDelegate>
 
 @end
