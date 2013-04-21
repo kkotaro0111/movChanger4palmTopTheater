@@ -115,7 +115,7 @@
     if(match.location != NSNotFound){
         NSRange ytmatch = [videoPath rangeOfString:@"^https?://(www.)?youtube.com" options:NSRegularExpressionSearch];
         if(ytmatch.location != NSNotFound){
-            LBYouTubeExtractor *ext = [[LBYouTubeExtractor alloc] initWithURL:[NSURL URLWithString:videoPath] quality:LBYouTubeVideoQualitySmall];
+            LBYouTubeExtractor *ext = [[LBYouTubeExtractor alloc] initWithURL:[NSURL URLWithString:videoPath] quality:LBYouTubeVideoQualityMedium];
             ext.delegate = self;
             ext.playerPosition = playerLayerPosition;
             [ext startExtracting];
