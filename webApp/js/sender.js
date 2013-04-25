@@ -1,5 +1,7 @@
 $(function(){
+	console.log("Start");
 	ws = new WebSocket("ws://utageworks.jpn.ph:9001");
+
 	ws.onmessage = function(evt) {
 		//$("#middle").append("<p>"+evt.data+"</p>");
 		console.log(evt);

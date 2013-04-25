@@ -5,55 +5,21 @@
 	<title></title>
 </head>
 <body>
-<!--
-<input id="front" class="itext" type="text" />
-<input id="middle" class="itext" type="text" />
-<input id="back" class="itext" type="text" />
--->
-	
-<input id="addyoutube" type="text" />
-<input type="button" value="追加" id="addBtn" />
-<div id="searchlist"></div>
-<div id="youtubelist"></div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<!-- <script src="./js/sender.js" type="text/javascript"></script> -->
-<script type="text/javascript">
-$("#addBtn").on("click",function(){
-	$.ajax({
-		dataType: "json",
-		url: "http://gdata.youtube.com/feeds/api/videos?alt=json&max-results=10&v=2&orderby=published&q=" + $("#addyoutube").val(),
-		success: function(){
-			var json = arguments[0];
-			console.log("ajax", json.feed.entry);
-			var ul = $("<ul>");
-			$.each(json.feed.entry, function(index,entry){
-				console.log(entry);
-				console.log(entry.media$group.media$title);
-				var thumb = $("<img>").attr({
-					src: entry.media$group.media$thumbnail[0].url,
-					width: entry.media$group.media$thumbnail[0].width,
-					height: entry.media$group.media$thumbnail[0].height,
-				});
-				var title = $("<p>").text(entry.media$group.media$title.$t);
-				var list = $("<li>").html(thumb).append(title);
-				ul.append(list);
-			});
-			$("#searchlist").html(ul);
-		}
-	});
-});
-function showMyVideos(json){
-	console.log(arguments);
-	var str = JSON.stringify(json);
-	console.log(str);
-}
+	背面：<input id="back" class="itext" type="text" /><br />
+	中面：<input id="middle" class="itext" type="text" /><br />
+	前面：<input id="front" class="itext" type="text" />
 
-function listVideo(){
-	console.log(arguments);
-}
-</script>
-<script src="http://gdata.youtube.com/feeds/api/users/kotaro0111/uploads?v=2&alt=json-in-script&format=5&callback=showMyVideos" type="text/javascript" ></script>
-<script src="http://gdata.youtube.com/feeds/api/users/ganzii1/uploads?v=2&max-results=4&alt=json-in-script&format=5&callback=listVideo" type="text/javascript"></script>
+	<hr />
+
+	<input id="addyoutube" type="text" />
+	<input type="button" value="追加" id="addBtn" />
+	<div id="searchlist"></div>
+	<div id="youtubelist"></div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="./js/sender.js" type="text/javascript"></script>
+	<script src="./js/searchyt.js" type="text/javascript"></script>
+	<script src="http://gdata.youtube.com/feeds/api/users/kotaro0111/uploads?v=2&alt=json-in-script&format=5&callback=showMyVideos" type="text/javascript" ></script>
 
 </body>
 </html>
