@@ -2,6 +2,8 @@ movie/
 *.mp4
 Podfile.lock
 */Pods/*
+*/vendor/bundle
+*/Gemfile.lock
 
 # Xcode
 .DS_Store

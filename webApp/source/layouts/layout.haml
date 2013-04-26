@@ -1,0 +1,17 @@
+!!! 5
+%html{:lang => "ja"}
+  %head
+    %meta{ :charset => "utf-8" }
+    
+    / Always force latest IE rendering engine or requrest Chrome Frame
+    %meta{ :content => "IE=edge, chrome=1", "http-equiv" => "X-UA-Compatble" }
+
+    / Use title if it's in thepage YAML frontmatter
+    %title= data.page.title || "PTTJ"
+    -#= stylesheet_link_tag "normalize", "all"
+
+  %body{:class => "#{page_classes}"}
+    = yield
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"}
+    = javascript_include_tag "sender", "searchyt"
+
